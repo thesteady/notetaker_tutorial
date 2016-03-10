@@ -1,6 +1,6 @@
 NOTETAKER TUTORIAL
 ==================
-code for my implementation of app from egghead.io course
+Code for my implementation of app from http://egghead.io course
 
 ## Running
 1. install webpack globally `npm install webpack -g`

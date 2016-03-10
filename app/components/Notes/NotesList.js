@@ -1,8 +1,11 @@
 var React = require('react');
 
 var NotesList = React.createClass({
-	render: function() {
+	propTypes: {
+		notes: React.PropTypes.array
+	},
 
+	render: function() {
 		var notes = this.props.notes.map(function(note, i) {
 			return (
 				<li className="list-group-item" key={i}>
@@ -11,11 +14,7 @@ var NotesList = React.createClass({
 			);
 		});
 
-		return (
-			<ul className="list-group">
-				{notes}
-			</ul>
-		)
+		return <ul className="list-group">{notes}</ul>;
 	}
 });
 

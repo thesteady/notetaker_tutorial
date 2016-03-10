@@ -14,19 +14,19 @@ var Profile = React.createClass({
   getInitialState: function() {
     // * initialize with empty data *
     return {
-      notes: [1,2,3],
+      notes: [1, 2, 3],
       bio: {name: 'pizza'},
       repos: ['a', 'b', 'c']
     }
   },
 
   componentDidMount: function() {
-    var firebaseUrl = 'https://github-note-taker.firebaseio.com/';
+    var firebaseUrl = 'https://notetakin-tutorial.firebaseio.com/';
+    // var firebaseUrl = 'https://github-note-taker.firebaseio.com/';
 
-    this.ref = new Firebase(firebaseUrl);
-
+    this.dataRef = new Firebase(firebaseUrl);
     // firebase: set a new node from the ref
-    var childRef = this.ref.child(this.props.params.username);
+    var childRef = this.dataRef.child(this.props.params.username);
     // a reactfiremixin function:
     this.bindAsArray(childRef, 'notes');
   },
@@ -37,22 +37,17 @@ var Profile = React.createClass({
   },
 
   render: function() {
+    var name = this.props.params.username;
     return (
       <div className="row">
         <div className="col-md-4">
-          <UserProfile
-            username={this.props.params.username}
-            bio={this.state.bio} />
+          <UserProfile username={name} bio={this.state.bio} />
         </div>
         <div className="col-md-4">
-          <Repos
-            username={this.props.params.username}
-            repos={this.state.repos} />
+          <Repos username={name} repos={this.state.repos} />
         </div>
         <div className="col-md-4">
-          <Notes
-
-            notes={this.state.notes} />
+          <Notes username={name} notes={this.state.notes} />
         </div>
       </div>
     );

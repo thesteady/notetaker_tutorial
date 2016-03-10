@@ -24795,12 +24795,12 @@
 	  },
 
 	  componentDidMount: function componentDidMount() {
-	    var firebaseUrl = 'https://github-note-taker.firebaseio.com/';
+	    var firebaseUrl = 'https://notetakin-tutorial.firebaseio.com/';
+	    // var firebaseUrl = 'https://github-note-taker.firebaseio.com/';
 
-	    this.ref = new Firebase(firebaseUrl);
-
+	    this.dataRef = new Firebase(firebaseUrl);
 	    // firebase: set a new node from the ref
-	    var childRef = this.ref.child(this.props.params.username);
+	    var childRef = this.dataRef.child(this.props.params.username);
 	    // a reactfiremixin function:
 	    this.bindAsArray(childRef, 'notes');
 	  },
@@ -24811,29 +24811,24 @@
 	  },
 
 	  render: function render() {
+	    var name = this.props.params.username;
 	    return React.createElement(
 	      'div',
 	      { className: 'row' },
 	      React.createElement(
 	        'div',
 	        { className: 'col-md-4' },
-	        React.createElement(UserProfile, {
-	          username: this.props.params.username,
-	          bio: this.state.bio })
+	        React.createElement(UserProfile, { username: name, bio: this.state.bio })
 	      ),
 	      React.createElement(
 	        'div',
 	        { className: 'col-md-4' },
-	        React.createElement(Repos, {
-	          username: this.props.params.username,
-	          repos: this.state.repos })
+	        React.createElement(Repos, { username: name, repos: this.state.repos })
 	      ),
 	      React.createElement(
 	        'div',
 	        { className: 'col-md-4' },
-	        React.createElement(Notes, {
-
-	          notes: this.state.notes })
+	        React.createElement(Notes, { username: name, notes: this.state.notes })
 	      )
 	    );
 	  }
@@ -24851,6 +24846,11 @@
 
 	var Repos = React.createClass({
 	  displayName: 'Repos',
+
+	  propTypes: {
+	    username: React.PropTypes.string.isRequired,
+	    repos: React.PropTypes.array.isRequired
+	  },
 
 	  render: function render() {
 	    return React.createElement(
@@ -24883,10 +24883,20 @@
 	var UserProfile = React.createClass({
 	  displayName: 'UserProfile',
 
+	  propTypes: {
+	    username: React.PropTypes.string.isRequired,
+	    bio: React.PropTypes.object
+	  },
+
 	  render: function render() {
 	    return React.createElement(
 	      'div',
 	      null,
+	      React.createElement(
+	        'h2',
+	        null,
+	        'User Profile!'
+	      ),
 	      React.createElement(
 	        'p',
 	        null,
@@ -24918,9 +24928,12 @@
 	var Notes = React.createClass({
 	  displayName: 'Notes',
 
-	  render: function render() {
-	    console.log('notes', this.props.notes);
+	  propTypes: {
+	    username: React.PropTypes.string.isRequired,
+	    notes: React.PropTypes.array
+	  },
 
+	  render: function render() {
 	    return React.createElement(
 	      'div',
 	      null,
@@ -24948,8 +24961,11 @@
 	var NotesList = React.createClass({
 		displayName: 'NotesList',
 
-		render: function render() {
+		propTypes: {
+			notes: React.PropTypes.array
+		},
 
+		render: function render() {
 			var notes = this.props.notes.map(function (note, i) {
 				return React.createElement(
 					'li',
