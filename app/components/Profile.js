@@ -28,6 +28,7 @@ var Profile = React.createClass({
     // firebase: set a new node from the ref
     var childRef = this.dataRef.child(this.props.params.username);
     // a reactfiremixin function:
+    // makes sure our state gets updated, too
     this.bindAsArray(childRef, 'notes');
   },
 
@@ -36,8 +37,16 @@ var Profile = React.createClass({
     this.unbind('notes');
   },
 
+  handleAddNote: function(newNote) {
+    // update firebase with new note
+    // append the new note to firebase
+    var name = this.props.params.username;
+    this.dataRef.child(name).child(this.state.notes.length).set(newNote)
+  },
+
   render: function() {
     var name = this.props.params.username;
+
     return (
       <div className="row">
         <div className="col-md-4">
@@ -47,7 +56,10 @@ var Profile = React.createClass({
           <Repos username={name} repos={this.state.repos} />
         </div>
         <div className="col-md-4">
-          <Notes username={name} notes={this.state.notes} />
+          <Notes
+            handleAddNote={this.handleAddNote}
+            username={name}
+            notes={this.state.notes} />
         </div>
       </div>
     );
