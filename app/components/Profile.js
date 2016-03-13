@@ -3,6 +3,7 @@ var Router = require('react-router');
 var Repos = require('./GitHub/Repos');
 var UserProfile = require('./GitHub/UserProfile');
 var Notes = require('./Notes/Notes');
+var helpers = require('../utils/helpers');
 
 var ReactFireMixin = require('reactfire');
 var Firebase = require('firebase');
@@ -15,8 +16,8 @@ var Profile = React.createClass({
     // * initialize with empty data *
     return {
       notes: [1, 2, 3],
-      bio: {name: 'pizza'},
-      repos: ['a', 'b', 'c']
+      bio: {},
+      repos: []
     }
   },
 
@@ -25,16 +26,34 @@ var Profile = React.createClass({
     // var firebaseUrl = 'https://github-note-taker.firebaseio.com/';
 
     this.dataRef = new Firebase(firebaseUrl);
-    // firebase: set a new node from the ref
-    var childRef = this.dataRef.child(this.props.params.username);
-    // a reactfiremixin function:
-    // makes sure our state gets updated, too
-    this.bindAsArray(childRef, 'notes');
+    this.init(this.props.params.username);
   },
 
   componentWillUnMount: function() {
-    //remove the firebase listener on notes:
+    // Remove the firebase listener on notes:
     this.unbind('notes');
+  },
+
+  componentWillReceiveProps: function(nextProps) {
+    // gets called whenever we change route
+    this.unbind('notes'); //unbinds the previous users notes
+    this.init(nextProps.params.username);
+  },
+
+  init: function(username) {
+    // firebase: set a new node from the ref
+    var childRef = this.dataRef.child(username);
+    // a reactfiremixin function:
+    // makes sure our state gets updated, too
+    this.bindAsArray(childRef, 'notes');
+
+    //fetch user's github info
+    helpers.getGitHubInfo(username)
+      .then(function(data) {
+        this.setState({
+          bio: data.bio, repos: data.repos
+        });
+      }.bind(this));
   },
 
   handleAddNote: function(newNote) {
