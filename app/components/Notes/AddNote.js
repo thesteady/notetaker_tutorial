@@ -1,21 +1,21 @@
-var React = require('react');
+import React from 'react';
 
 var AddNote = React.createClass({
 	propTypes: {
 		addNote: React.PropTypes.func.isRequired
 	},
 
-	setRef: function(ref) {
+	setRef(ref) {
 		this.note = ref;
 	},
 
-	handleSubmit: function() {
+	handleSubmit() {
 		var newNote = this.note.value;
 		this.note.value = "";
 		this.props.addNote(newNote);
 	},
 
-	render: function() {
+	render() {
 		return (
 			<div className="input-group">
 				<input type="text"

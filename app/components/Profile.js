@@ -1,18 +1,17 @@
-var React = require('react');
-var Router = require('react-router');
-var Repos = require('./GitHub/Repos');
-var UserProfile = require('./GitHub/UserProfile');
-var Notes = require('./Notes/Notes');
-var helpers = require('../utils/helpers');
-
-var ReactFireMixin = require('reactfire');
-var Firebase = require('firebase');
+import React from 'react';
+import Router from 'react-router';
+import Repos from './GitHub/Repos';
+import UserProfile from './GitHub/UserProfile';
+import Notes from './Notes/Notes';
+import getGitHubInfo from '../utils/helpers';
+import ReactFireMixin from 'reactfire';
+import Firebase from 'firebase';
 
 var Profile = React.createClass({
 // manages user profile, repo data and notes data
   mixins: [ReactFireMixin],
 
-  getInitialState: function() {
+  getInitialState() {
     // * initialize with empty data *
     return {
       notes: [1, 2, 3],
@@ -21,7 +20,7 @@ var Profile = React.createClass({
     }
   },
 
-  componentDidMount: function() {
+  componentDidMount() {
     var firebaseUrl = 'https://notetakin-tutorial.firebaseio.com/';
     // var firebaseUrl = 'https://github-note-taker.firebaseio.com/';
 
@@ -29,18 +28,18 @@ var Profile = React.createClass({
     this.init(this.props.params.username);
   },
 
-  componentWillUnMount: function() {
+  componentWillUnMount() {
     // Remove the firebase listener on notes:
     this.unbind('notes');
   },
 
-  componentWillReceiveProps: function(nextProps) {
+  componentWillReceiveProps(nextProps) {
     // gets called whenever we change route
     this.unbind('notes'); //unbinds the previous users notes
     this.init(nextProps.params.username);
   },
 
-  init: function(username) {
+  init(username) {
     // firebase: set a new node from the ref
     var childRef = this.dataRef.child(username);
     // a reactfiremixin function:
@@ -48,22 +47,23 @@ var Profile = React.createClass({
     this.bindAsArray(childRef, 'notes');
 
     //fetch user's github info
-    helpers.getGitHubInfo(username)
-      .then(function(data) {
+    getGitHubInfo(username)
+      .then((data) => {
         this.setState({
-          bio: data.bio, repos: data.repos
+          bio: data.bio,
+          repos: data.repos
         });
-      }.bind(this));
+      });
   },
 
-  handleAddNote: function(newNote) {
+  handleAddNote(newNote) {
     // update firebase with new note
     // append the new note to firebase
     var name = this.props.params.username;
     this.dataRef.child(name).child(this.state.notes.length).set(newNote)
   },
 
-  render: function() {
+  render() {
     var name = this.props.params.username;
 
     return (

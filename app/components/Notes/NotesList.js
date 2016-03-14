@@ -1,12 +1,12 @@
-var React = require('react');
+import React from 'react';
 
 var NotesList = React.createClass({
 	propTypes: {
 		notes: React.PropTypes.array
 	},
 
-	render: function() {
-		var notes = this.props.notes.map(function(note, i) {
+	render() {
+		var notes = this.props.notes.map((note, i) => {
 			return (
 				<li className="list-group-item" key={i}>
 					{note['.value']}

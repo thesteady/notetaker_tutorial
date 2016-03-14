@@ -1,14 +1,14 @@
-var React = require('react');
-var Router = require('react-router');
+import React from 'react';
+import { Router } from 'react-router';
 
 var SearchGitHub = React.createClass({
 	mixins: [Router.History],
 
-	getRef: function(ref) {
+	getRef(ref) {
 		this.usernameRef = ref;
 	},
 
-	handleSubmit: function() {
+	handleSubmit() {
 		// get username and take us to their profile page
 		var username = this.usernameRef.value;
 
@@ -16,7 +16,7 @@ var SearchGitHub = React.createClass({
 		this.history.pushState(null, "/profile/" + username);
 	},
 
-	render: function() {
+	render() {
 		return (
 			<div className="col-sm-12">
 				<form onSubmit={this.handleSubmit}>

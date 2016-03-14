@@ -1,8 +1,8 @@
-var React = require('react');
-var SearchGitHub = require('./SearchGitHub');
+import React from 'react';
+import SearchGitHub from './SearchGitHub';
 
 var Main = React.createClass({
-  render: function() {
+  render() {
     return (
      <div className="main-container">
       <nav className="navbar navbar-default" role="navigation">

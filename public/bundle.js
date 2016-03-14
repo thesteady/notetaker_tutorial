@@ -46,16 +46,26 @@
 
 	'use strict';
 
-	var React = __webpack_require__(1);
-	var ReactDOM = __webpack_require__(158);
-	var Router = __webpack_require__(159).Router;
+	var _react = __webpack_require__(1);
 
-	var routes = __webpack_require__(216);
+	var _react2 = _interopRequireDefault(_react);
 
-	ReactDOM.render(React.createElement(
-	  Router,
+	var _reactDom = __webpack_require__(158);
+
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+
+	var _reactRouter = __webpack_require__(159);
+
+	var _routes = __webpack_require__(216);
+
+	var _routes2 = _interopRequireDefault(_routes);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	_reactDom2.default.render(_react2.default.createElement(
+	  _reactRouter.Router,
 	  null,
-	  routes
+	  _routes2.default
 	), document.getElementById('app'));
 
 /***/ },
@@ -24690,21 +24700,31 @@
 
 	'use strict';
 
-	var React = __webpack_require__(1);
+	var _react = __webpack_require__(1);
 
-	var Main = __webpack_require__(217);
-	var Home = __webpack_require__(219);
-	var Profile = __webpack_require__(220);
+	var _react2 = _interopRequireDefault(_react);
 
-	var Router = __webpack_require__(159);
-	var Route = Router.Route;
-	var IndexRoute = Router.IndexRoute;
+	var _reactRouter = __webpack_require__(159);
 
-	module.exports = React.createElement(
-	  Route,
-	  { path: '/', component: Main },
-	  React.createElement(Route, { path: 'profile/:username', component: Profile }),
-	  React.createElement(IndexRoute, { component: Home })
+	var _Main = __webpack_require__(217);
+
+	var _Main2 = _interopRequireDefault(_Main);
+
+	var _Home = __webpack_require__(219);
+
+	var _Home2 = _interopRequireDefault(_Home);
+
+	var _Profile = __webpack_require__(220);
+
+	var _Profile2 = _interopRequireDefault(_Profile);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	module.exports = _react2.default.createElement(
+	  _reactRouter.Route,
+	  { path: '/', component: _Main2.default },
+	  _react2.default.createElement(_reactRouter.Route, { path: 'profile/:username', component: _Profile2.default }),
+	  _react2.default.createElement(_reactRouter.IndexRoute, { component: _Home2.default })
 	);
 
 /***/ },
@@ -24713,26 +24733,32 @@
 
 	'use strict';
 
-	var React = __webpack_require__(1);
-	var SearchGitHub = __webpack_require__(218);
+	var _react = __webpack_require__(1);
 
-	var Main = React.createClass({
+	var _react2 = _interopRequireDefault(_react);
+
+	var _SearchGitHub = __webpack_require__(218);
+
+	var _SearchGitHub2 = _interopRequireDefault(_SearchGitHub);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Main = _react2.default.createClass({
 	  displayName: 'Main',
-
 	  render: function render() {
-	    return React.createElement(
+	    return _react2.default.createElement(
 	      'div',
 	      { className: 'main-container' },
-	      React.createElement(
+	      _react2.default.createElement(
 	        'nav',
 	        { className: 'navbar navbar-default', role: 'navigation' },
-	        React.createElement(
+	        _react2.default.createElement(
 	          'div',
 	          { className: 'col-sm-7 col-sm-offset-2', style: { marginTop: 15 } },
-	          React.createElement(SearchGitHub, null)
+	          _react2.default.createElement(_SearchGitHub2.default, null)
 	        )
 	      ),
-	      React.createElement(
+	      _react2.default.createElement(
 	        'div',
 	        { className: 'container' },
 	        this.props.children
@@ -24749,18 +24775,22 @@
 
 	'use strict';
 
-	var React = __webpack_require__(1);
-	var Router = __webpack_require__(159);
+	var _react = __webpack_require__(1);
 
-	var SearchGitHub = React.createClass({
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRouter = __webpack_require__(159);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var SearchGitHub = _react2.default.createClass({
 		displayName: 'SearchGitHub',
 
-		mixins: [Router.History],
+		mixins: [_reactRouter.Router.History],
 
 		getRef: function getRef(ref) {
 			this.usernameRef = ref;
 		},
-
 		handleSubmit: function handleSubmit() {
 			// get username and take us to their profile page
 			var username = this.usernameRef.value;
@@ -24768,23 +24798,22 @@
 			this.usernameRef.value = '';
 			this.history.pushState(null, "/profile/" + username);
 		},
-
 		render: function render() {
-			return React.createElement(
+			return _react2.default.createElement(
 				'div',
 				{ className: 'col-sm-12' },
-				React.createElement(
+				_react2.default.createElement(
 					'form',
 					{ onSubmit: this.handleSubmit },
-					React.createElement(
+					_react2.default.createElement(
 						'div',
 						{ className: 'form-group col-sm-7' },
-						React.createElement('input', { type: 'text', className: 'form-control', ref: this.getRef })
+						_react2.default.createElement('input', { type: 'text', className: 'form-control', ref: this.getRef })
 					),
-					React.createElement(
+					_react2.default.createElement(
 						'div',
 						{ className: 'form-group col-sm-5' },
-						React.createElement(
+						_react2.default.createElement(
 							'button',
 							{ type: 'submit', className: 'btn btn-block btn-primary' },
 							'Search GitHub'
@@ -24803,13 +24832,16 @@
 
 	"use strict";
 
-	var React = __webpack_require__(1);
+	var _react = __webpack_require__(1);
 
-	var Home = React.createClass({
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Home = _react2.default.createClass({
 	  displayName: "Home",
-
 	  render: function render() {
-	    return React.createElement(
+	    return _react2.default.createElement(
 	      "h2",
 	      { className: "text-center" },
 	      "Search by GitHub Username Above"
@@ -24825,21 +24857,45 @@
 
 	'use strict';
 
-	var React = __webpack_require__(1);
-	var Router = __webpack_require__(159);
-	var Repos = __webpack_require__(221);
-	var UserProfile = __webpack_require__(222);
-	var Notes = __webpack_require__(223);
-	var helpers = __webpack_require__(226);
+	var _react = __webpack_require__(1);
 
-	var ReactFireMixin = __webpack_require__(244);
-	var Firebase = __webpack_require__(245);
+	var _react2 = _interopRequireDefault(_react);
 
-	var Profile = React.createClass({
+	var _reactRouter = __webpack_require__(159);
+
+	var _reactRouter2 = _interopRequireDefault(_reactRouter);
+
+	var _Repos = __webpack_require__(221);
+
+	var _Repos2 = _interopRequireDefault(_Repos);
+
+	var _UserProfile = __webpack_require__(222);
+
+	var _UserProfile2 = _interopRequireDefault(_UserProfile);
+
+	var _Notes = __webpack_require__(223);
+
+	var _Notes2 = _interopRequireDefault(_Notes);
+
+	var _helpers = __webpack_require__(226);
+
+	var _helpers2 = _interopRequireDefault(_helpers);
+
+	var _reactfire = __webpack_require__(244);
+
+	var _reactfire2 = _interopRequireDefault(_reactfire);
+
+	var _firebase = __webpack_require__(245);
+
+	var _firebase2 = _interopRequireDefault(_firebase);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Profile = _react2.default.createClass({
 	  displayName: 'Profile',
 
 	  // manages user profile, repo data and notes data
-	  mixins: [ReactFireMixin],
+	  mixins: [_reactfire2.default],
 
 	  getInitialState: function getInitialState() {
 	    // * initialize with empty data *
@@ -24849,27 +24905,25 @@
 	      repos: []
 	    };
 	  },
-
 	  componentDidMount: function componentDidMount() {
 	    var firebaseUrl = 'https://notetakin-tutorial.firebaseio.com/';
 	    // var firebaseUrl = 'https://github-note-taker.firebaseio.com/';
 
-	    this.dataRef = new Firebase(firebaseUrl);
+	    this.dataRef = new _firebase2.default(firebaseUrl);
 	    this.init(this.props.params.username);
 	  },
-
 	  componentWillUnMount: function componentWillUnMount() {
 	    // Remove the firebase listener on notes:
 	    this.unbind('notes');
 	  },
-
 	  componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
 	    // gets called whenever we change route
 	    this.unbind('notes'); //unbinds the previous users notes
 	    this.init(nextProps.params.username);
 	  },
-
 	  init: function init(username) {
+	    var _this = this;
+
 	    // firebase: set a new node from the ref
 	    var childRef = this.dataRef.child(username);
 	    // a reactfiremixin function:
@@ -24877,40 +24931,39 @@
 	    this.bindAsArray(childRef, 'notes');
 
 	    //fetch user's github info
-	    helpers.getGitHubInfo(username).then(function (data) {
-	      this.setState({
-	        bio: data.bio, repos: data.repos
+	    (0, _helpers2.default)(username).then(function (data) {
+	      _this.setState({
+	        bio: data.bio,
+	        repos: data.repos
 	      });
-	    }.bind(this));
+	    });
 	  },
-
 	  handleAddNote: function handleAddNote(newNote) {
 	    // update firebase with new note
 	    // append the new note to firebase
 	    var name = this.props.params.username;
 	    this.dataRef.child(name).child(this.state.notes.length).set(newNote);
 	  },
-
 	  render: function render() {
 	    var name = this.props.params.username;
 
-	    return React.createElement(
+	    return _react2.default.createElement(
 	      'div',
 	      { className: 'row' },
-	      React.createElement(
+	      _react2.default.createElement(
 	        'div',
 	        { className: 'col-md-4' },
-	        React.createElement(UserProfile, { username: name, bio: this.state.bio })
+	        _react2.default.createElement(_UserProfile2.default, { username: name, bio: this.state.bio })
 	      ),
-	      React.createElement(
+	      _react2.default.createElement(
 	        'div',
 	        { className: 'col-md-4' },
-	        React.createElement(Repos, { username: name, repos: this.state.repos })
+	        _react2.default.createElement(_Repos2.default, { username: name, repos: this.state.repos })
 	      ),
-	      React.createElement(
+	      _react2.default.createElement(
 	        'div',
 	        { className: 'col-md-4' },
-	        React.createElement(Notes, {
+	        _react2.default.createElement(_Notes2.default, {
 	          handleAddNote: this.handleAddNote,
 	          username: name,
 	          notes: this.state.notes })
@@ -24927,31 +24980,36 @@
 
 	"use strict";
 
-	var React = __webpack_require__(1);
+	var _react = __webpack_require__(1);
 
-	var Repos = React.createClass({
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Repos = _react2.default.createClass({
 	  displayName: "Repos",
 
 	  propTypes: {
-	    username: React.PropTypes.string.isRequired,
-	    repos: React.PropTypes.array.isRequired
+	    username: _react2.default.PropTypes.string.isRequired,
+	    repos: _react2.default.PropTypes.array.isRequired
 	  },
 
 	  render: function render() {
+
 	    var repos = this.props.repos.map(function (repo, index) {
-	      return React.createElement(
+	      return _react2.default.createElement(
 	        "li",
 	        { className: "list-group-item", key: index },
-	        repo.html_url && React.createElement(
+	        repo.html_url && _react2.default.createElement(
 	          "h4",
 	          null,
-	          React.createElement(
+	          _react2.default.createElement(
 	            "a",
 	            { href: repo.html_url },
 	            repo.name
 	          )
 	        ),
-	        repo.description && React.createElement(
+	        repo.description && _react2.default.createElement(
 	          "p",
 	          null,
 	          repo.description
@@ -24959,15 +25017,15 @@
 	      );
 	    });
 
-	    return React.createElement(
+	    return _react2.default.createElement(
 	      "div",
 	      null,
-	      React.createElement(
+	      _react2.default.createElement(
 	        "h3",
 	        null,
 	        "User Repos"
 	      ),
-	      React.createElement(
+	      _react2.default.createElement(
 	        "ul",
 	        { className: "list-group" },
 	        repos
@@ -24984,79 +25042,83 @@
 
 	"use strict";
 
-	var React = __webpack_require__(1);
+	var _react = __webpack_require__(1);
 
-	var UserProfile = React.createClass({
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var UserProfile = _react2.default.createClass({
 	  displayName: "UserProfile",
 
 	  propTypes: {
-	    username: React.PropTypes.string.isRequired,
-	    bio: React.PropTypes.object
+	    username: _react2.default.PropTypes.string.isRequired,
+	    bio: _react2.default.PropTypes.object
 	  },
 
 	  render: function render() {
-	    return React.createElement(
+	    return _react2.default.createElement(
 	      "div",
 	      null,
-	      React.createElement(
+	      _react2.default.createElement(
 	        "h2",
 	        null,
 	        "Profile"
 	      ),
-	      React.createElement(
+	      _react2.default.createElement(
 	        "ul",
 	        { className: "list-group" },
-	        this.props.bio.avatar_url && React.createElement(
+	        this.props.bio.avatar_url && _react2.default.createElement(
 	          "li",
 	          { className: "list-group-item profile-photo" },
-	          React.createElement("img", { src: this.props.bio.avatar_url })
+	          _react2.default.createElement("img", { src: this.props.bio.avatar_url })
 	        ),
-	        this.props.bio.name && React.createElement(
+	        this.props.bio.name && _react2.default.createElement(
 	          "li",
 	          { className: "list-group-item" },
 	          "Name: ",
 	          this.props.bio.name
 	        ),
-	        this.props.bio.login && React.createElement(
+	        this.props.bio.login && _react2.default.createElement(
 	          "li",
 	          { className: "list-group-item" },
 	          "Login: ",
 	          this.props.bio.login
 	        ),
-	        this.props.bio.email && React.createElement(
+	        this.props.bio.email && _react2.default.createElement(
 	          "li",
 	          { className: "list-group-item" },
 	          "Email: ",
 	          this.props.bio.email
 	        ),
-	        this.props.bio.location && React.createElement(
+	        this.props.bio.location && _react2.default.createElement(
 	          "li",
 	          { className: "list-group-item" },
 	          "Location: ",
 	          this.props.bio.location
 	        ),
-	        this.props.bio.company && React.createElement(
+	        this.props.bio.company && _react2.default.createElement(
 	          "li",
 	          { className: "list-group-item" },
 	          "Company: ",
 	          this.props.bio.company
 	        ),
-	        this.props.bio.followers && React.createElement(
+	        this.props.bio.followers && _react2.default.createElement(
 	          "li",
 	          { className: "list-group-item" },
 	          "Followers: ",
 	          this.props.bio.followers
 	        ),
-	        this.props.bio.public_repos && React.createElement(
+	        this.props.bio.public_repos && _react2.default.createElement(
 	          "li",
 	          { className: "list-group-item" },
 	          "Public Repos: ",
 	          this.props.bio.public_repos
 	        ),
-	        this.props.bio.blog && React.createElement(
+	        this.props.bio.blog && _react2.default.createElement(
 	          "li",
 	          { className: "list-group-item" },
-	          React.createElement(
+	          _react2.default.createElement(
 	            "a",
 	            { href: this.props.bio.blog },
 	            "Blog"
@@ -25075,31 +25137,41 @@
 
 	'use strict';
 
-	var React = __webpack_require__(1);
-	var NotesList = __webpack_require__(224);
-	var AddNote = __webpack_require__(225);
+	var _react = __webpack_require__(1);
 
-	var Notes = React.createClass({
+	var _react2 = _interopRequireDefault(_react);
+
+	var _NotesList = __webpack_require__(224);
+
+	var _NotesList2 = _interopRequireDefault(_NotesList);
+
+	var _AddNote = __webpack_require__(225);
+
+	var _AddNote2 = _interopRequireDefault(_AddNote);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Notes = _react2.default.createClass({
 	  displayName: 'Notes',
 
 	  propTypes: {
-	    username: React.PropTypes.string.isRequired,
-	    notes: React.PropTypes.array.isRequired,
-	    handleAddNote: React.PropTypes.func.isRequired
+	    username: _react2.default.PropTypes.string.isRequired,
+	    notes: _react2.default.PropTypes.array.isRequired,
+	    handleAddNote: _react2.default.PropTypes.func.isRequired
 	  },
 
 	  render: function render() {
-	    return React.createElement(
+	    return _react2.default.createElement(
 	      'div',
 	      null,
-	      React.createElement(
+	      _react2.default.createElement(
 	        'h3',
 	        null,
 	        'Notes for ',
 	        this.props.username
 	      ),
-	      React.createElement(AddNote, { addNote: this.props.handleAddNote }),
-	      React.createElement(NotesList, { notes: this.props.notes })
+	      _react2.default.createElement(_AddNote2.default, { addNote: this.props.handleAddNote }),
+	      _react2.default.createElement(_NotesList2.default, { notes: this.props.notes })
 	    );
 	  }
 	});
@@ -25112,25 +25184,29 @@
 
 	'use strict';
 
-	var React = __webpack_require__(1);
+	var _react = __webpack_require__(1);
 
-	var NotesList = React.createClass({
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var NotesList = _react2.default.createClass({
 		displayName: 'NotesList',
 
 		propTypes: {
-			notes: React.PropTypes.array
+			notes: _react2.default.PropTypes.array
 		},
 
 		render: function render() {
 			var notes = this.props.notes.map(function (note, i) {
-				return React.createElement(
+				return _react2.default.createElement(
 					'li',
 					{ className: 'list-group-item', key: i },
 					note['.value']
 				);
 			});
 
-			return React.createElement(
+			return _react2.default.createElement(
 				'ul',
 				{ className: 'list-group' },
 				notes
@@ -25146,36 +25222,38 @@
 
 	"use strict";
 
-	var React = __webpack_require__(1);
+	var _react = __webpack_require__(1);
 
-	var AddNote = React.createClass({
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var AddNote = _react2.default.createClass({
 		displayName: "AddNote",
 
 		propTypes: {
-			addNote: React.PropTypes.func.isRequired
+			addNote: _react2.default.PropTypes.func.isRequired
 		},
 
 		setRef: function setRef(ref) {
 			this.note = ref;
 		},
-
 		handleSubmit: function handleSubmit() {
 			var newNote = this.note.value;
 			this.note.value = "";
 			this.props.addNote(newNote);
 		},
-
 		render: function render() {
-			return React.createElement(
+			return _react2.default.createElement(
 				"div",
 				{ className: "input-group" },
-				React.createElement("input", { type: "text",
+				_react2.default.createElement("input", { type: "text",
 					className: "form-control",
 					placeholder: "Add a New Note", ref: this.setRef }),
-				React.createElement(
+				_react2.default.createElement(
 					"span",
 					{ className: "input-group-btn" },
-					React.createElement(
+					_react2.default.createElement(
 						"button",
 						{ className: "btn btn-default", type: "button",
 							onClick: this.handleSubmit },
@@ -25194,28 +25272,30 @@
 
 	'use strict';
 
-	var axios = __webpack_require__(227);
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	exports.default = getGitHubInfo;
+
+	var _axios = __webpack_require__(227);
+
+	var _axios2 = _interopRequireDefault(_axios);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function getRepos(username) {
-		return axios.get('https://api.github.com/users/' + username + '/repos');
+		return _axios2.default.get('https://api.github.com/users/' + username + '/repos');
 	};
 
 	function getUserInfo(username) {
-		return axios.get('https://api.github.com/users/' + username);
+		return _axios2.default.get('https://api.github.com/users/' + username);
 	};
 
-	var helpers = {
-		getGitHubInfo: function getGitHubInfo(username) {
-			return axios.all([getRepos(username), getUserInfo(username)]).then(function (arr) {
-				return {
-					repos: arr[0].data,
-					bio: arr[1].data
-				};
-			});
-		}
+	function getGitHubInfo(username) {
+		return _axios2.default.all([getRepos(username), getUserInfo(username)]).then(function (arr) {
+			return { repos: arr[0].data, bio: arr[1].data };
+		});
 	};
-
-	module.exports = helpers;
 
 /***/ },
 /* 227 */

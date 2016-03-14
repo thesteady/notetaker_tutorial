@@ -1,7 +1,7 @@
-var React = require('react');
+import React from 'react';
 
 var Home = React.createClass({
-  render: function() {
+  render() {
     return (
       <h2 className="text-center">
         Search by GitHub Username Above
