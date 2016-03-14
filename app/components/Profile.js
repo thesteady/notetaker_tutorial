@@ -1,50 +1,42 @@
 import React from 'react';
-import Router from 'react-router';
 import Repos from './GitHub/Repos';
 import UserProfile from './GitHub/UserProfile';
 import Notes from './Notes/Notes';
 import getGitHubInfo from '../utils/helpers';
-import ReactFireMixin from 'reactfire';
-import Firebase from 'firebase';
+import Rebase from 're-base';
 
-var Profile = React.createClass({
-// manages user profile, repo data and notes data
-  mixins: [ReactFireMixin],
+const base = Rebase.createClass('https://notetakin-tutorial.firebaseio.com/');
 
-  getInitialState() {
-    // * initialize with empty data *
-    return {
-      notes: [1, 2, 3],
+class Profile extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      notes: [],
       bio: {},
       repos: []
     }
-  },
+  }
 
   componentDidMount() {
-    var firebaseUrl = 'https://notetakin-tutorial.firebaseio.com/';
-    // var firebaseUrl = 'https://github-note-taker.firebaseio.com/';
-
-    this.dataRef = new Firebase(firebaseUrl);
     this.init(this.props.params.username);
-  },
+  }
 
   componentWillUnMount() {
-    // Remove the firebase listener on notes:
-    this.unbind('notes');
-  },
+    base.removeBinding(this.ref);
+  }
 
   componentWillReceiveProps(nextProps) {
-    // gets called whenever we change route
-    this.unbind('notes'); //unbinds the previous users notes
+    base.removeBinding(this.ref);
     this.init(nextProps.params.username);
-  },
+  }
 
   init(username) {
-    // firebase: set a new node from the ref
-    var childRef = this.dataRef.child(username);
-    // a reactfiremixin function:
-    // makes sure our state gets updated, too
-    this.bindAsArray(childRef, 'notes');
+    this.ref = base.bindToState(username, {
+      context: this,
+      asArray: true,
+      state: 'notes'
+    })
 
     //fetch user's github info
     getGitHubInfo(username)
@@ -54,14 +46,11 @@ var Profile = React.createClass({
           repos: data.repos
         });
       });
-  },
+  }
 
   handleAddNote(newNote) {
-    // update firebase with new note
-    // append the new note to firebase
-    var name = this.props.params.username;
-    this.dataRef.child(name).child(this.state.notes.length).set(newNote)
-  },
+    base.post(this.props.params.username, {data: this.state.notes.concat([newNote]) })
+  }
 
   render() {
     var name = this.props.params.username;
@@ -76,13 +65,13 @@ var Profile = React.createClass({
         </div>
         <div className="col-md-4">
           <Notes
-            handleAddNote={this.handleAddNote}
+            handleAddNote={(newNote) => this.handleAddNote(newNote)}
             username={name}
             notes={this.state.notes} />
         </div>
       </div>
     );
   }
-});
+}
 
-module.exports = Profile;
+export default Profile;

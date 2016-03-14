@@ -1,21 +1,17 @@
 import React from 'react';
 import SearchGitHub from './SearchGitHub';
 
-var Main = React.createClass({
-  render() {
-    return (
-     <div className="main-container">
-      <nav className="navbar navbar-default" role="navigation">
-        <div className="col-sm-7 col-sm-offset-2" style={{marginTop: 15}}>
-          <SearchGitHub />
-        </div>
-      </nav>
-      <div className="container">
-        {this.props.children}
+const Main = ({history, children}) => {
+  return (
+   <div className="main-container">
+    <nav className="navbar navbar-default" role="navigation">
+      <div className="col-sm-7 col-sm-offset-2" style={{marginTop: 15}}>
+        <SearchGitHub history={history} />
       </div>
-     </div>
-    );
-  }
-});
+    </nav>
+    <div className="container">{children}</div>
+   </div>
+  );
+}
 
-module.exports = Main;
+export default Main;
